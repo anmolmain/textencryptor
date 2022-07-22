@@ -1,0 +1,218 @@
+<!-- Made by 
+Anmol main
+Punjabi university Patiala -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encryptor</title>
+    <style>
+        body,
+        html {
+            padding: 0px;
+            margin: 0px;
+            background-color:indianred;
+        }
+
+        #main {
+            width: 100%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            left: 50%;
+            top: 50%;
+            width: 600px;
+            height: 650px;
+            background-color: wheat;
+        }
+
+        .btn {
+            transition: 0.2s;
+            width: 100%;
+            height: 50px;
+            background-color: rgb(39, 180, 180);
+            /* outline: none; */
+            /* border: none; */
+            border-radius: 20px;
+            font-size: 25px;
+            font-weight: 600;
+
+        }
+
+        .btn:active {
+            transition: 0.2s;
+            width: 100%;
+            height: 50px;
+            background-color: rgb(12, 114, 114);
+            /* outline: none; */
+            /* border: none; */
+            border-radius: 20px;
+            font-size: 25px;
+            font-weight: 600;
+
+        }
+
+        #textField {
+            width: 99%;
+            height: 50px;
+            font-size: 35px;
+            border-radius: 50px;
+            outline: none;
+            border: none;
+            text-align: center;
+            border: 2px solid black;
+
+        }
+
+        table {
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            letter-spacing: 3px;
+            word-spacing: 8px;
+            font-family: monospace;
+            font-size: 25px;
+            font-weight: 600;
+        }
+
+        #result {
+            text-align: center;
+            width: 99%;
+            height: 10px;
+            font-size: 35px;
+        }
+
+        p {
+            text-align: center;
+            font-weight: 500px;
+        }
+
+        #DID {
+            width: 96%;
+            height: 50px;
+            text-align: center;
+            font-size: 15px;
+            border-radius: 50px;
+            outline: none;
+            border: none;
+            text-align: center;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <h1>Don't Worry ,Your data is safe</h1>
+        <h1>This magic Happens at your browser itself</h1>
+        <h1>Page refreshes after 10 seconds</h1>
+        <br><br>
+        <hr>
+        <hr><br><br>
+        <table border="0">
+            <tr>
+                <td colspan="2"><input type="textarea" name="" id="textField" placeholder="Enter string"></td>
+                <td colspan="0"><input type="textarea" name="" id="DID" placeholder="Enter Decrypting ID"></td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <p id="encryptionID" style="            background-color: indianred;
+                    padding: 6px; font-weight:600 ;color: white;">.</p>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="button" value="Encrypt" class="btn" onclick="encrypt()"></td>
+                <td><input type="button" value="Decrypt" class="btn" onclick="decrypt()"></td>
+                <td><input type="button" value="Credits" onclick="copy()" class="btn"></td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <p id="encryptionID" style="            background-color: indianred;
+                    padding: 6px; font-weight:600;color: white;">RESULT</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <p id="result" style=" font-weight:800 ;letter-spacing: 2px;">Result will be displayed here</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        var EncryptionCode;
+        let k = (Math.random() * (15 - 10) + 10)
+        k = parseInt(k);
+        function encrypt() {
+
+            console.log(k)
+            str = document.getElementById('textField').value;
+            document.getElementById('encryptionID').innerHTML = "Please note your Encryption ID :   ED" + k + "AT";
+            size = str.length;
+            let arr = new Array();
+            let s = new Array();
+            for (let index = 0; index < str.length; index++) {
+                arr[index] = (str.charCodeAt(index) + k);
+            }
+
+            // for (let index = 0; index < str.length; index++) {
+            //     console.log(arr[index]);
+            // }
+            for (let index = 0; index < arr.length; index++) {
+                s[index] = (String.fromCharCode(arr[index]));
+
+            }
+
+            s = s.join("")
+            // console.log(s)
+            document.getElementById('result').innerHTML = s;
+            setTimeout(function () { locationreload() }, 10000)
+            function locationreload() {
+                url = "encryptor.html";
+                window.location = url;
+            }
+        }
+        function decrypt() {
+
+            deId = document.getElementById('DID').value;
+            // KE13AT
+            var k = (deId.slice(2, 4))
+            // console.log(k)
+            let stri = document.getElementById('textField').value;
+            size = stri.length;
+            let ds = new Array();
+            let decrypted = new Array();
+            let arr = new Array();
+            for (let index = 0; index < stri.length; index++) {
+                ds[index] = (stri.charCodeAt(index) - k);
+            }
+            for (let index = 0; index < ds.length; index++) {
+                decrypted[index] = (String.fromCharCode(ds[index]));
+
+            }
+            // console.log(decrypted)
+            decrypted = decrypted.join("")
+            document.getElementById('result').innerHTML = decrypted;
+
+            setTimeout(function () { locationreload() }, 10000)
+            function locationreload() {
+                url = "encryptor.html";
+                window.location = url;
+            }
+        }
+
+        function copy() {
+            document.getElementById("result").innerHTML = "Made by Anmol Main and Tushar kumar";
+            setTimeout(function () { locationreload() }, 10000)
+            function locationreload() {
+                url = "encryptor.html";
+                window.location = url;
+            }
+        }
+    </script>
+</body>
+
+</html>
